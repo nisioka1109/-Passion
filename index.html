@@ -25,8 +25,25 @@
             <li><a href="">メニュー</a></li>
             <li><a href="">予約</a></li>
         </ul>
-        </a>
     </header>
+    <div class="header_setting">
+        <article class="header_font-size">
+            <h1>サイズ / Size</h1>
+            <div class="header_fontbtn">
+                <p class="is-active">小</p>
+                <p>大</p>
+            </div>
+        </article>
+
+        <article class="header_language">
+            <h1>言語 / Language</h1>
+            <div class="header_langbtn">
+                <p class="is-active">日本語</p>
+                <p>English</p>
+            </div>
+        </article>
+    </div>
+
     <div class="line" id="lineBox">
         <button class="line_close" aria-label="閉じる">×</button>
         <h1 class="line_title">予約はこちら</h1>
@@ -51,6 +68,7 @@
                     <li><a href="#">Home</a></li>
                     <li><a href="#">About</a></li>
                     <li><a href="#">Infomation</a></li>
+                    <li><a href="#">Setting/設定</a></li>
                 </ul>
             </div>
         </div>
@@ -199,7 +217,7 @@
             <h1 class="menu_title">MENU</h1>
             <div class="menu_inner">
                 <h2 class="menu_subtitle">基本メニュー</h2>
-                <article class="menu_content">
+                <article class="menu_contents">
                     <ul>
                         <div>
                             <li>Cut/カット</li>
@@ -218,7 +236,17 @@
         <section class="newmenu">
         </section>
     </main>
-    <section class=" map"><img src="../images/map.png" alt=""></section>
+    <section class="map"><img src="../images/map.png" alt="">
+        <article class="map_link">
+            <p class="map_title">GoogleMap</p>
+            <img src="./images/linkicon.svg" alt="">
+        </article>
+    </section>
+    <section class="tousin">
+        <h1 class="tousin_subtitle">新メニュー</h1>
+        <h2 class="tousin_title">「頭浸浴』</h2>
+        <h1 class="tousin_text"><span>極上の５分間</span><br>をお楽しみください</h1>
+    </section>
     <footer class="footer">
         <div class="footer_inner">
             <div class="footer_left">
@@ -266,14 +294,10 @@
                             <li>愛知県稲沢市平和町西光坊大門北６８</li>
                         </article>
                     </div>
-                    <div class="infomation_gallery">
-                        <img src="./images/map.png" class="infomation_map" alt="">
-                        <div class="modal">
-                            <div class="modal_background"></div>
-                            <img src="" alt="" class="modal_image">
-                        </div>
-                    </div>
+
                 </div>
+            </div>
+            </div>
             </div>
         </section>
     </footer>

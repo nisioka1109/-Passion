@@ -9,6 +9,100 @@ window.addEventListener("scroll", () => {
     }
 });
 
+
+
+
+/*文字の大きさボタン */
+
+
+const settingPanel = document.querySelector('.header_setting');
+
+// パネル自身をクリック → 開閉
+settingPanel.addEventListener('click', (e) => {
+    // 中のボタン操作時は開閉しない
+    if (
+        e.target.closest('.header_fontbtn') ||
+        e.target.closest('.header_langbtn')
+    ) return;
+
+    settingPanel.classList.toggle('is-open');
+
+    // document にイベントが伝わらないようにする
+    e.stopPropagation();
+});
+
+
+// ==========================
+// パネル外クリックで閉じる
+// ==========================
+document.addEventListener('click', (e) => {
+    // パネルが開いていて、かつ
+    // クリックした場所がパネルの外なら閉じる
+    if (
+        settingPanel.classList.contains('is-open') &&
+        !e.target.closest('.header_setting')
+    ) {
+        settingPanel.classList.remove('is-open');
+    }
+});
+
+
+// ==========================
+// アクティブ切替（共通）
+// ==========================
+function toggleActive(buttons) {
+    buttons.forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            e.stopPropagation(); // パネルが閉じないように
+            buttons.forEach(b => b.classList.remove('is-active'));
+            btn.classList.add('is-active');
+        });
+    });
+}
+
+// 文字サイズ
+toggleActive(document.querySelectorAll('.header_fontbtn p'));
+
+// 言語
+toggleActive(document.querySelectorAll('.header_langbtn p'));
+
+
+
+
+/*文字の大きさかえる */
+
+const fontButtons = document.querySelectorAll('.header_fontbtn p');
+const html = document.documentElement;
+const staffColumn = document.querySelector('.staff_column');
+
+fontButtons.forEach(btn => {
+    btn.addEventListener('click', (e) => {
+        e.stopPropagation();
+
+        // active 切替
+        fontButtons.forEach(b => b.classList.remove('is-active'));
+        btn.classList.add('is-active');
+
+        if (btn.textContent.trim() === '大') {
+            // 全体文字を1.3倍
+            html.style.fontSize = '130%';
+
+            // staff_column の高さ変更
+            if (staffColumn) {
+                staffColumn.style.height = '570vh';
+            }
+
+        } else {
+            // 元に戻す
+            html.style.fontSize = '100%';
+
+            if (staffColumn) {
+                staffColumn.style.height = '400vh'; // 元の高さ
+            }
+        }
+    });
+});
+
 /* =============================
    ③ スクロールで TOP ボタン表示
 ============================= */
@@ -148,25 +242,6 @@ const fgObserver = new IntersectionObserver((entries) => {
 
 fgObserver.observe(floorguide);
 
-
-
-
-const infomationMaps = document.querySelectorAll('.infomation_map');
-const modal = document.querySelector('.modal');
-const modalImage = document.querySelector('.modal_image');
-const modalBg = document.querySelector('.modal_background');
-
-infomationMaps.forEach(img => {
-    img.addEventListener('click', () => {
-        modalImage.src = img.src;
-        modal.classList.add('active');
-    });
-});
-
-// 背景クリックで閉じる
-modalBg.addEventListener('click', () => {
-    modal.classList.remove('active');
-});
 
 
 // infomation menu line のフェードイン//
@@ -343,7 +418,7 @@ const floorObserver = new IntersectionObserver(entries => {
     entries.forEach(entry => {
 
         // 40% 表示されたらフェードイン開始
-        if (entry.intersectionRatio >= 0.4) {
+        if (entry.intersectionRatio >= 0.3) {
             floorSection.classList.add('visible');
         }
     });
