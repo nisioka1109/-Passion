@@ -218,11 +218,12 @@ html {
         }
     }
 
+
     &_setting {
         position: fixed;
         top: 0;
         left: 5%;
-        width: 220px;
+        width: 20%;
         z-index: 2000;
 
         background: #fff;
@@ -251,6 +252,20 @@ html {
                 margin-bottom: 8px;
                 color: #202020;
             }
+        }
+    }
+
+    @media (max-width: 600px) {
+        width: 80%;
+        left: 13%;
+
+        ul {
+            font-size: 50%;
+        }
+
+        &_setting {
+            width: 40%;
+            font-size: 80%;
         }
     }
 
@@ -1209,6 +1224,10 @@ $transition-speed: 0.3s;
     @media (max-width: 600px) {
         & {
             grid-template-columns: 1fr;
+        }
+
+        &_column {
+            height: 350vh;
         }
 
         &_column2 {
